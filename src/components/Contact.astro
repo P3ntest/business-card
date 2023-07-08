@@ -1,0 +1,22 @@
+---
+import type { Contact } from "../lib/cockpit.types";
+import { Icon } from "astro-icon";
+import { IconFromType, ContactLink } from "../lib/contact";
+
+export interface Props extends Contact {
+    offset: number;
+}
+
+const { type, offset, value } = Astro.props;
+
+const icon = IconFromType(type);
+---
+
+<a
+    class="w-36 h-36 border-gray-400 border-4 rounded-3xl flex items-center justify-center"
+    data-aos="fade-up"
+    data-aos-delay={offset * 100}
+    href={ContactLink(type, value)}
+>
+    <Icon {...icon} class="p-5" />
+</a>

@@ -1,0 +1,10 @@
+---
+import { fetchCockpit } from "../lib/cockpit";
+import Contact from "./Contact.astro";
+
+const contacts: any[] = await fetchCockpit("/content/items/contact");
+---
+
+<section class="flex flex-row gap-4 flex-wrap px-20 justify-center">
+    {contacts.map((contact, i) => <Contact {...contact} offset={i} />)}
+</section>

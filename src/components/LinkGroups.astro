@@ -1,0 +1,11 @@
+---
+import { fetchCockpit } from "../lib/cockpit";
+import type { LinkGroup as LinkGroupType } from "../lib/cockpit.types";
+
+import LinkGroup from "./LinkGroup.astro";
+const linkGroups = (await fetchCockpit(
+    "/content/items/links"
+)) as LinkGroupType[];
+---
+
+{linkGroups.map((group) => <LinkGroup {...group} />)}

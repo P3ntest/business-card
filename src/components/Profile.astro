@@ -1,0 +1,28 @@
+---
+import { cockpitImage, fetchCockpit } from "../lib/cockpit";
+const {
+    image: { path },
+    fullName,
+    slug,
+} = await fetchCockpit("/content/item/profile");
+---
+
+<div class="flex flex-col items-center z-40 bg-white relative">
+    <div
+        class="rounded-full border-white absolute"
+        style=`width: min(50vmin, 400px); height: min(50vmin, 400px); transform: translateY(-50%); border-width: 20px; background-image: url(${cockpitImage(path)}); background-repeat: no-repeat; background-position: center; background-size: cover;`
+    >
+    </div>
+    <div class="pt-80 lg:pt-50 flex flex-col items-center gap-11 lg:gap-6">
+        <h1 class="text-6xl lg:text-4xl font-bold" data-aos="fade-up">
+            {fullName}
+        </h1>
+        <h2
+            class="text-5xl lg:text-2xl"
+            data-aos="fade-up"
+            data-aos-delay="200"
+        >
+            {slug.join(" | ")}
+        </h2>
+    </div>
+</div>

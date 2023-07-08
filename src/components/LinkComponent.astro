@@ -1,0 +1,30 @@
+---
+import { cockpitImage } from "../lib/cockpit";
+import type { Link } from "../lib/cockpit.types";
+import { Icon } from "astro-icon";
+export interface Props extends Link {}
+
+const { label, href, icon } = Astro.props;
+---
+
+<a
+    class="border-gray-400 border-4 rounded-3xl flex flex-row items-center justify-stretch gap-5"
+    href={href}
+    data-aos="fade-up"
+>
+    <div class="w-32 h-32 p-6">
+        {
+            icon &&
+                (icon.startsWith("data") || icon.startsWith("http") ? (
+                    <img src={icon} alt="" />
+                ) : (
+                    <Icon pack={icon.split(":")[0]} name={icon.split(":")[1]} />
+                ))
+        }
+    </div>
+    <p class="text-5xl font-bold uppercase">
+        {label}
+    </p>
+    <div class="flex-1"></div>
+    {href && <Icon pack="gg" name="external" class="w-32 h-32 p-3" />}
+</a>
