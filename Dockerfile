@@ -1,6 +1,8 @@
 FROM node:lts AS build
 WORKDIR /app
 COPY . .
+ARG COCKPIT_URL
+ENV COCKPIT_URL=$COCKPIT_URL
 RUN npm i
 RUN npm run build
 
